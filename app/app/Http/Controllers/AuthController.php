@@ -22,9 +22,28 @@ class AuthController extends Controller
 
     }
 
-    public function login(Request $request){
-        $data=$request->validate([
-            'email'=>['required','string'],
-            'password'=>['required','string']]);
+    public function login(Request $request) {
+   
+    $fields = $request->validate([
+        'email' => 'required|string',
+        'password' => 'required|string'
+    ]);
+
+    
+    $user = User::where('email', $fields['email'])->first();
+
+    if (!$user || !Hash::check($fields['password'], $user->password)) {
+        return response(['message' => 'Invalid credentials'], 401);
     }
+
+
+    $token = $user->createToken('myapptoken')->plainTextToken;
+
+    return response()->json(['user' => $user, 'token' => $token], 200);
+}
+
+
+    
+
+
 }

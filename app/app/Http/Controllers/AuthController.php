@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+
+class AuthController extends Controller
+{
+    public function register(Request $request){
+        $data=$request->validate([
+            'name'=>['required','string'],
+            'email'=>['required','string'],
+            'password'=>['required','string','confirmed']
+        ]);
+
+        $user=User::create(['name'=>$data['name'],'email'=>$data['email'],'password'=>bcrypt($data['password'])]);
+
+        $token = $user->createToken('myapptoken')->plainTextToken;
+
+        return response()->json(['user'=>$user,'token'=>$token],201);
+
+    }
+
+    public function login(Request $request){
+        $data=$request->validate([
+            'email'=>['required','string'],
+            'password'=>['required','string']]);
+    }
+}

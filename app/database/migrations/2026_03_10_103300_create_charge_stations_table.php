@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('charge_stations', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('chargerType');
+            $table->boolean('is_available')->default('true');
             $table->timestamps();
         });
     }

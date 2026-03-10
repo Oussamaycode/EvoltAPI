@@ -11,10 +11,24 @@ class ChargeStationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+
+
+    public function index(Request $request)
+
     {
-        $chargeStations=ChargeStation::all();
-        return json(['chargeStations'=>$chargeStations],200);
+        if($request->zone=="all"){
+
+            $chargeStations=chargeStation::all()->where('is_available',true);
+
+        }
+        else{
+
+            $chargeStations=chargeStation::where('zone',$request->zone)->where('is_available',true);
+        }
+
+        return response()->json(['chargeStations'=>$chargeStations],200);
+
     }
 
     /**
@@ -22,8 +36,8 @@ class ChargeStationController extends Controller
      */
     public function store(StorechargeStationRequest $request)
     {
-        $chargeStation::create(['name'=>$request->name,'chargerType'=>$chargerType]);
-        return json(['chargeStation'=>$chargeStation],201);
+        $chargeStation=chargeStation::create(['name'=>$request->name,'chargerType'=>$request->chargerType]);
+        return response()->json(['chargeStation'=>$chargeStation],201);
     }
 
     /**

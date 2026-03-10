@@ -9,4 +9,8 @@ class reservation extends Model
 {
     /** @use HasFactory<\Database\Factories\ReservationFactory> */
     use HasFactory;
+
+    public function chargeStation(){
+        $this->belongsTo(chargeStation::class);
+    }
 }

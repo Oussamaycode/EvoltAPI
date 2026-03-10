@@ -13,6 +13,6 @@ class chargeStation extends Model
     protected $fillable=['name','chargerType','zone'];
 
     public function reservations(){
-        return $this->hasMany(Reservation::class);
+        return $this->hasMany(reservation::class);
     }
 }

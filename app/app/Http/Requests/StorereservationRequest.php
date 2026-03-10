@@ -21,8 +21,6 @@ class StorereservationRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        ['reservation_time'=>['required','datetime','after:now']];
     }
 }

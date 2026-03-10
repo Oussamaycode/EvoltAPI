@@ -11,7 +11,7 @@ class StorereservationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,6 +21,6 @@ class StorereservationRequest extends FormRequest
      */
     public function rules(): array
     {
-        ['reservation_time'=>['required','datetime','after:now']];
+        return ['reservation_time'=>['required','after:now']];
     }
 }

@@ -13,7 +13,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reservations=Reservation::where('user_id',auth()->user()->id)->get();
+        return response()->json(['reservations'=>$reservations],200);
     }
 
     /**
@@ -21,7 +22,8 @@ class ReservationController extends Controller
      */
     public function store(StorereservationRequest $request)
     {
-        //
+        $reservation=Reservation::create(['reservation_time'=>$request->reservation_time,'user_id'=>auth()->user()->id,'charge_station_id'=>$request->charge_station_id]);
+        return response()->json(['reservation'=>$reservation],201);
     }
 
     /**

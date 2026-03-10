@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\chargeStation;
 use App\Http\Requests\StorechargeStationRequest;
 use App\Http\Requests\UpdatechargeStationRequest;
+use App\Http\Requests\IndexchargeStationRequest;
 
 class ChargeStationController extends Controller
 {
@@ -14,17 +15,17 @@ class ChargeStationController extends Controller
 
 
 
-    public function index(Request $request)
+    public function index(IndexchargeStationRequest $request)
 
     {
         if($request->zone=="all"){
 
-            $chargeStations=chargeStation::all()->where('is_available',true);
+            $chargeStations=chargeStation::where('is_available',true)->get();
 
         }
         else{
 
-            $chargeStations=chargeStation::where('zone',$request->zone)->where('is_available',true);
+            $chargeStations=chargeStation::where('zone',$request->zone)->where('is_available',true)->get();
         }
 
         return response()->json(['chargeStations'=>$chargeStations],200);
@@ -36,7 +37,7 @@ class ChargeStationController extends Controller
      */
     public function store(StorechargeStationRequest $request)
     {
-        $chargeStation=chargeStation::create(['name'=>$request->name,'chargerType'=>$request->chargerType]);
+        $chargeStation=chargeStation::create(['name'=>$request->name,'chargerType'=>$request->chargerType,'zone'=>$request->zone]);
         return response()->json(['chargeStation'=>$chargeStation],201);
     }
 

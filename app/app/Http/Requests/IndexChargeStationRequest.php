@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorechargeStationRequest extends FormRequest
+class IndexChargeStationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +22,7 @@ class StorechargeStationRequest extends FormRequest
     public function rules(): array
     {
         return [
-
-            'name'=>['required','string','max:50'],
-            'chargerType'=>['required','string','max:500'],
             'zone'=>['required','string','max:50'],
-
         ];
     }
 }

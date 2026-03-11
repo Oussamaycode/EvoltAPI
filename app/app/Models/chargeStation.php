@@ -10,7 +10,7 @@ class chargeStation extends Model
     /** @use HasFactory<\Database\Factories\ChargeStationFactory> */
     use HasFactory;
 
-    protected $fillable=['name','chargerType','zone'];
+    protected $fillable=['name','chargerType','zone','power'];
 
     public function reservations(){
         return $this->hasMany(reservation::class);

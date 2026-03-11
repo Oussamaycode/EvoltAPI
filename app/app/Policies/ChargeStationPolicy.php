@@ -13,7 +13,7 @@ class ChargeStationPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class ChargeStationPolicy
      */
     public function view(User $user, chargeStation $chargeStation): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class ChargeStationPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user->role=="admin";
     }
 
     /**
@@ -37,7 +37,7 @@ class ChargeStationPolicy
      */
     public function update(User $user, chargeStation $chargeStation): bool
     {
-        return false;
+        return $user->role=="admin";
     }
 
     /**
@@ -45,7 +45,7 @@ class ChargeStationPolicy
      */
     public function delete(User $user, chargeStation $chargeStation): bool
     {
-        return false;
+        return $user->role=="admin";
     }
 
     /**

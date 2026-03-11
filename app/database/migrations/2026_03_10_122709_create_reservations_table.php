@@ -16,6 +16,7 @@ return new class extends Migration
             $table->dateTime('reservation_time');
             $table->foreignId('user_id')->constrained();
             $table->foreignId('charge_station_id')->constrained();
+            $table->boolean('is_canceled')->default('true');
             $table->timestamps();
         });
     }

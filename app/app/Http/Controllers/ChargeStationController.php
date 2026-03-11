@@ -37,7 +37,7 @@ class ChargeStationController extends Controller
      */
     public function store(StorechargeStationRequest $request)
     {
-        $chargeStation=chargeStation::create(['name'=>$request->name,'chargerType'=>$request->chargerType,'zone'=>$request->zone]);
+        $chargeStation=chargeStation::create(['name'=>$request->name,'chargerType'=>$request->chargerType,'zone'=>$request->zone,'power'=>$request->power]);
         return response()->json(['chargeStation'=>$chargeStation],201);
     }
 
@@ -54,7 +54,9 @@ class ChargeStationController extends Controller
      */
     public function update(UpdatechargeStationRequest $request, chargeStation $chargeStation)
     {
-        //
+        $this->authorize('update',$chargeStation);
+
+        $chargeStation->update(['chargerType'=>$request->chargerType,'zone'=>$request->zone,'power'=>$request->power]);
     }
 
     /**

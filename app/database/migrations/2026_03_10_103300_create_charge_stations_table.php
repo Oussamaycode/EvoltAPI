@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('chargerType');
             $table->boolean('is_available')->default('true');
+            $table->string('power');
             $table->string('zone');
             $table->timestamps();
         });

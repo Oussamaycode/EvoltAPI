@@ -11,7 +11,7 @@ class UpdatechargeStationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->user()->role=='admin';
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdatechargeStationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'chargerType'=>['required','string','max:500'],
+            'zone'=>['required','string','max:50'],
+            'power'=>['required','string','max:50'],
+
         ];
     }
 }

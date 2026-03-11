@@ -26,6 +26,7 @@ class StorechargeStationRequest extends FormRequest
             'name'=>['required','string','max:50'],
             'chargerType'=>['required','string','max:500'],
             'zone'=>['required','string','max:50'],
+            'power'=>['required','string','max:50'],
 
         ];
     }

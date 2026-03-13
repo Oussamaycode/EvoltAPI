@@ -16,7 +16,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/charge-station',[ChargeStationController::class,'store'])->name('chargeStation.store');
     Route::get('/reservation',[ReservationController::class,'index'])->name('reservation.index');
     Route::post('/reservation',[ReservationController::class,'store'])->name('reservation.store');
-    Route::patch('/charge-station/{id}',[ChargeStationController::class,'update'])->name('chargestation.update');
+    Route::get('/charge-station/{chargeStation}',[ChargeStationController::class,'show'])->name('chargeStation.show');
+    Route::patch('/charge-station/{chargeStation}',[ChargeStationController::class,'update'])->name('chargestation.update');
 });
 
 

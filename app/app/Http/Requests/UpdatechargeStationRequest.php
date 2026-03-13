@@ -22,9 +22,10 @@ class UpdatechargeStationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'chargerType'=>['required','string','max:500'],
-            'zone'=>['required','string','max:50'],
-            'power'=>['required','string','max:50'],
+            'name'=>['sometimes','string','max:50'],
+            'chargerType'=>['sometimes','string','max:500'],
+            'zone'=>['sometimes','string','max:50'],
+            'power'=>['sometimes','string','max:50']
 
         ];
     }
